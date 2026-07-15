@@ -75,7 +75,7 @@
         #noBtn {
             background-color: #e57373;
             color: white;
-            position: absolute;
+            /* Removido o absolute inicial para que ele fique lado a lado com o Sim */
             transition: left 0.1s ease, top 0.1s ease;
             z-index: 999;
         }
@@ -151,46 +151,41 @@
 </head>
 <body>
     <div class="container">
-        <!-- TELA 1: Boas-vindas Inicial -->
         <div id="step1">
             <div class="icon-container">👋✨</div>
             <h1>Olá, que bom te ver por aqui!</h1>
             <button class="action-btn" onclick="nextStep(2)">Continuar</button>
         </div>
 
-        <!-- TELA 2: Pergunta Importante -->
         <div id="step2" class="hidden">
             <div class="icon-container">🥰🤞</div>
             <h1>Eu adorei nosso primeiro encontro, vamos marcar o segundo de muitos?</h1>
             <div class="buttons-flex">
                 <button id="yesBtn" onclick="nextStep(3)">Sim!</button>
-                <button id="noBtn" onmouseover="flee(this)" onclick="flee(this)">Não</button>
+                <button id="noBtn" onmouseover="flee(this)" ontouchstart="flee(this); event.preventDefault();" onclick="flee(this)">Não</button>
             </div>
         </div>
 
-        <!-- TELA 3: Sucesso com SLA -->
         <div id="step3" class="hidden">
             <div class="icon-container">😅🎉</div>
             <div class="success-msg">
-                Ufa, que bom que você topou!<br>Ah, prometo diminuir o SLA de resposta das mensagens hahaha 😅
+                Ufa, que bom que você topou!<br>Ah, prometo diminuir o SLA de resposta das mensagens
             </div>
             <button class="action-btn" onclick="nextStep(4)">Vamos ao programa 🚀</button>
         </div>
 
-        <!-- TELA 4: Escolha do Dia -->
         <div id="step4" class="hidden">
             <div class="icon-container">📅✨</div>
             <h1>Que dia é melhor pra você?</h1>
             <div class="options-list">
-                <button class="option-btn" onclick="finish('Pós festa junina')">Pós festa junina</button>
-                <button class="option-btn" onclick="finish('Janta&Vinho sexta à noite')">Janta&Vinho sexta à noite</button>
-                <button class="option-btn" onclick="finish('Treino + Café da manhã sábado')">Treino + Café da manhã sábado</button>
+                <button class="option-btn" onclick="finish('Amanhã pós festa junina')">Amanhã pós festa junina</button>
+                <button class="option-btn" onclick="finish('Sexta à noite')">Sexta à noite</button>
+                <button class="option-btn" onclick="finish('Manhã de sábado')">Manhã de sábado</button>
                 <button class="option-btn" onclick="finish('Todas opções anteriores')">Todas opções anteriores 😍</button>
                 <button class="option-btn" onclick="finish('Faça sua proposta')">Faça sua proposta 📝</button>
             </div>
         </div>
 
-        <!-- TELA 5: Finalização -->
         <div id="step5" class="hidden">
             <div class="icon-container">❤️🥰</div>
             <div class="success-msg" id="finalMessage">
@@ -200,11 +195,17 @@
             <a id="whatsappLink" href="#" target="_blank" class="wa-btn">
                 Enviar resposta no WhatsApp 💬
             </a>
+            
+            <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px;">
+                <button class="option-btn" style="background-color: #f5f5f5; border: 1px solid #ddd; width: 100%; padding: 10px;" onclick="nextStep(4)">
+                    Voltar e alterar opção ↩️
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Substitua pelo seu número do WhatsApp com o DDD (apenas números, ex: 5511999999999)
+        // Substitua pelo seu número do WhatsApp com o DDD (apenas números)
         const SEU_WHATSAPP = "5519998858836"; 
 
         function flee(button) {
