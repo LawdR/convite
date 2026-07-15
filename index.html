@@ -153,13 +153,13 @@
     <div class="container">
         <div id="step1">
             <div class="icon-container">👋✨</div>
-            <h1>Olá, que bom te ver por aqui!</h1>
+            <h1>Olá Ana, que bom te ver por aqui!</h1>
             <button class="action-btn" onclick="nextStep(2)">Continuar</button>
         </div>
 
         <div id="step2" class="hidden">
             <div class="icon-container">🥰🤞</div>
-            <h1>Eu adorei nosso primeiro encontro, vamos marcar o segundo de muitos?</h1>
+            <h1>Eu adorei nosso encontro, vamos marcar o segundo de muitos?</h1>
             <div class="buttons-flex">
                 <button id="yesBtn" onclick="nextStep(3)">Sim!</button>
                 <button id="noBtn" onmouseover="flee(this)" ontouchstart="flee(this); event.preventDefault();" onclick="flee(this)">Não</button>
@@ -169,7 +169,7 @@
         <div id="step3" class="hidden">
             <div class="icon-container">😅🎉</div>
             <div class="success-msg">
-                Ufa, que bom que você topou!<br>Ah, prometo diminuir o SLA de resposta das mensagens
+                Ufa, que bom que você topou!<br>Ah, prometo diminuir o SLA de resposta das mensagens 😅
             </div>
             <button class="action-btn" onclick="nextStep(4)">Vamos ao programa 🚀</button>
         </div>
@@ -178,9 +178,9 @@
             <div class="icon-container">📅✨</div>
             <h1>Que dia é melhor pra você?</h1>
             <div class="options-list">
-                <button class="option-btn" onclick="finish('Amanhã pós festa junina')">Amanhã pós festa junina</button>
-                <button class="option-btn" onclick="finish('Sexta à noite')">Sexta à noite</button>
-                <button class="option-btn" onclick="finish('Manhã de sábado')">Manhã de sábado</button>
+                <button class="option-btn" onclick="finish('Pós festa junina')">Pós festa junina 🍻</button>
+                <button class="option-btn" onclick="finish('Janta&Vinho sexta à noite')">Janta&Vinho sexta à noite 🍝🍷</button>
+                <button class="option-btn" onclick="finish('Treino + Café da manhã sábado')">Treino + Café sábado 🏃🏼‍♀️🏃🏽🥞</button>
                 <button class="option-btn" onclick="finish('Todas opções anteriores')">Todas opções anteriores 😍</button>
                 <button class="option-btn" onclick="finish('Faça sua proposta')">Faça sua proposta 📝</button>
             </div>
@@ -235,11 +235,11 @@
             let finalMsg = '';
             let textWhatsApp = '';
 
-            if (choice === 'Faça sua proposta') {
+            if (choice === 'Me diz você') {
                 finalMsg = 'Perfeito! Me conta qual é a sua proposta para esse encontro! 😉';
                 textWhatsApp = 'Eu amei o nosso primeiro encontro também! E a minha proposta para o segundo é...';
             } else if (choice === 'Todas opções anteriores') {
-                finalMsg = 'Amei! Combinado: todas as opções anteriores! 😍🎉';
+                finalMsg = 'Amei! Topo todas as opções anteriores! 😍🎉';
                 textWhatsApp = 'Eu amei o nosso primeiro encontro também! E aceito o segundo em todos esses dias 😍🎉';
             } else {
                 finalMsg = `Excelente escolha: <strong>${choice}</strong>! 📅✨`;
