@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para alguém especial... ✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffee0;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 35px 25px;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            max-width: 420px;
+            width: 90%;
+            border: 2px solid #f9eb87;
+            transition: all 0.3s ease;
+        }
+        h1 {
+            color: #b58000;
+            font-size: 22px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .icon-container {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .buttons-flex {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            height: 60px;
+        }
+        button {
+            padding: 12px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #yesBtn {
+            background-color: #ffca28;
+            color: #5d4037;
+        }
+        #yesBtn:hover {
+            background-color: #ffd54f;
+            transform: scale(1.05);
+        }
+        #noBtn {
+            background-color: #e57373;
+            color: white;
+            position: absolute;
+            transition: left 0.1s ease, top 0.1s ease;
+            z-index: 999;
+        }
+        /* Options for Schedule Screen */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .option-btn {
+            background-color: #fffde7;
+            color: #5d4037;
+            border: 2px solid #ffe082;
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .option-btn:hover {
+            background-color: #fff9c4;
+            border-color: #ffd54f;
+            transform: translateY(-2px);
+        }
+        .hidden {
+            display: none !important;
+        }
+        .success-msg {
+            color: #5d4037;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .action-btn {
+            background-color: #ffca28;
+            color: #5d4037;
+            padding: 14px 30px;
+            font-size: 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .action-btn:hover {
+            background-color: #ffd54f;
+            transform: scale(1.05);
+        }
+        .wa-btn {
+            background-color: #25d366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .wa-btn:hover {
+            transform: scale(1.05);
+            background-color: #20ba5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TELA 1: Boas-vindas Inicial -->
+        <div id="step1">
+            <div class="icon-container">👋✨</div>
+            <h1>Olá, que bom te ver por aqui!</h1>
+            <button class="action-btn" onclick="nextStep(2)">Continuar</button>
+        </div>
+
+        <!-- TELA 2: Pergunta Importante -->
+        <div id="step2" class="hidden">
+            <div class="icon-container">🥰🤞</div>
+            <h1>Eu adorei nosso primeiro encontro, vamos marcar o segundo de muitos?</h1>
+            <div class="buttons-flex">
+                <button id="yesBtn" onclick="nextStep(3)">Sim!</button>
+                <button id="noBtn" onmouseover="flee(this)" onclick="flee(this)">Não</button>
+            </div>
+        </div>
+
+        <!-- TELA 3: Sucesso com SLA -->
+        <div id="step3" class="hidden">
+            <div class="icon-container">😅🎉</div>
+            <div class="success-msg">
+                Ufa, que bom que você topou!<br>Ah, prometo diminuir o SLA de resposta das mensagens hahaha 😅
+            </div>
+            <button class="action-btn" onclick="nextStep(4)">Vamos ao programa 🚀</button>
+        </div>
+
+        <!-- TELA 4: Escolha do Dia -->
+        <div id="step4" class="hidden">
+            <div class="icon-container">📅✨</div>
+            <h1>Que dia é melhor pra você?</h1>
+            <div class="options-list">
+                <button class="option-btn" onclick="finish('Pós festa junina')">Pós festa junina</button>
+                <button class="option-btn" onclick="finish('Janta&Vinho sexta à noite')">Janta&Vinho sexta à noite</button>
+                <button class="option-btn" onclick="finish('Treino + Café da manhã sábado')">Treino + Café da manhã sábado</button>
+                <button class="option-btn" onclick="finish('Todas opções anteriores')">Todas opções anteriores 😍</button>
+                <button class="option-btn" onclick="finish('Faça sua proposta')">Faça sua proposta 📝</button>
+            </div>
+        </div>
+
+        <!-- TELA 5: Finalização -->
+        <div id="step5" class="hidden">
+            <div class="icon-container">❤️🥰</div>
+            <div class="success-msg" id="finalMessage">
+                Escolha registrada!
+            </div>
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Clique no botão abaixo para me enviar sua resposta diretamente no WhatsApp!</p>
+            <a id="whatsappLink" href="#" target="_blank" class="wa-btn">
+                Enviar resposta no WhatsApp 💬
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Substitua pelo seu número do WhatsApp com o DDD (apenas números, ex: 5511999999999)
+        const SEU_WHATSAPP = "5519998858836"; 
+
+        function flee(button) {
+            const padding = 30;
+            const maxX = window.innerWidth - button.offsetWidth - padding;
+            const maxY = window.innerHeight - button.offsetHeight - padding;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            button.style.position = 'fixed';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        }
+
+        function nextStep(stepNum) {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.add('hidden');
+            document.getElementById('step5').classList.add('hidden');
+
+            document.getElementById('step' + stepNum).classList.remove('hidden');
+        }
+
+        function finish(choice) {
+            let finalMsg = '';
+            let textWhatsApp = '';
+
+            if (choice === 'Faça sua proposta') {
+                finalMsg = 'Perfeito! Me conta qual é a sua proposta para esse encontro! 😉';
+                textWhatsApp = 'Eu amei o nosso primeiro encontro também! E a minha proposta para o segundo é...';
+            } else if (choice === 'Todas opções anteriores') {
+                finalMsg = 'Amei! Combinado: todas as opções anteriores! 😍🎉';
+                textWhatsApp = 'Eu amei o nosso primeiro encontro também! E aceito o segundo em todos esses dias 😍🎉';
+            } else {
+                finalMsg = `Excelente escolha: <strong>${choice}</strong>! 📅✨`;
+                textWhatsApp = `Eu amei o nosso primeiro encontro também! O melhor dia para o segundo é: ${choice} 📅✨`;
+            }
+            
+            document.getElementById('finalMessage').innerHTML = finalMsg;
+            
+            // Configura o link do WhatsApp
+            const encodedText = encodeURIComponent(textWhatsApp);
+            document.getElementById('whatsappLink').href = `https://api.whatsapp.com/send?phone=${5519998858836}&text=${encodedText}`;
+            
+            nextStep(5);
+        }
+    </script>
+</body>
+</html>
